@@ -2,7 +2,7 @@ class ActivitiesController < ApplicationController
 
     def index
         @activities = Activity.all
-        render json: @activities
+        render json: @activities, include: [:project, :activity_value]
     end
 
     def create
