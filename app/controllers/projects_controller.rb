@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
 
     def index
         @projects = Project.all
-        render json: @projects, include: :tasks
+        render json: @projects, include: [:tasks, :client, :payment_method_value, :status_value]
     end
 
     def show
