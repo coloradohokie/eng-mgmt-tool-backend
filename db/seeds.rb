@@ -49,19 +49,76 @@ project1 = Project.create({
     payment_method_value_id: payment1.id,
     client_id: client2.id,
     budget: 100000,
-    contract_date: 2020-01-02,
-    st_contract_received_date: 2020-01-10,
-    framing_due_date: 2020-01-15,
-    foundation_due_date: 2020-01-15,
-    email_from_dwg_received_date: 2020-01-18,
-    contract_proposal_sent_date: 2020-01-20,
+    contract_date: "2020-01-02",
+    st_contract_received_date: "2020-01-10",
+    framing_due_date: "2020-01-15",
+    foundation_due_date: "2020-01-15",
+    email_from_dwg_received_date: "2020-01-18",
+    contract_proposal_sent_date: "2020-01-20",
+    ready_to_be_invoiced: false
+})
+
+project4 = Project.create({
+    job_number: 110,
+    status_value_id: status2.id,
+    address1: "2620 E. 2nd Ave",
+    address2: "Unit 1",
+    city: "Denver",
+    project_description: "Repair roof so as not to leak",
+    payment_method_value_id: payment2.id,
+    client_id: client2.id,
+    budget: 100000,
+    contract_date: "2020-01-02",
+    st_contract_received_date: "2020-01-10",
+    framing_due_date: "2020-01-15",
+    foundation_due_date: "2020-01-15",
+    email_from_dwg_received_date: "2020-01-18",
+    contract_proposal_sent_date: "2020-01-20",
+    ready_to_be_invoiced: true
+})
+
+project2 = Project.create({
+    job_number: 101,
+    status_value_id: status2.id,
+    address1: "1600 Pennsylvania Ave.",
+    address2: "",
+    city: "Washington",
+    project_description: "reinforce bullet proof glass",
+    payment_method_value_id: payment1.id,
+    client_id: client2.id,
+    budget: 100000,
+    contract_date: "2020-01-02",
+    st_contract_received_date: "2020-01-10",
+    framing_due_date: "2020-01-15",
+    foundation_due_date: "2020-01-15",
+    email_from_dwg_received_date: "2020-01-18",
+    contract_proposal_sent_date: "2020-01-20",
+    ready_to_be_invoiced: true
+})
+
+project3 = Project.create({
+    job_number: 107,
+    status_value_id: status1.id,
+    address1: "16501 Auraria Pkwy",
+    address2: "",
+    city: "Denver",
+    project_description: "Install successful basketball team",
+    payment_method_value_id: payment1.id,
+    client_id: client2.id,
+    budget: 100000,
+    contract_date: "2020-01-02",
+    st_contract_received_date: "2020-01-10",
+    framing_due_date: "2020-01-15",
+    foundation_due_date: "2020-01-15",
+    email_from_dwg_received_date: "2020-01-18",
+    contract_proposal_sent_date: "2020-01-20",
     ready_to_be_invoiced: false
 })
 
 activity1 = Activity.create({
     activity_value_id: activity_value1.id,
     project_id: project1.id,
-    activity_date: 2020-01-15,
+    activity_date: "2020-01-15",
     notes: "We talked about the weather",
     important: true,
     archived: false
@@ -70,7 +127,7 @@ activity1 = Activity.create({
 activity2 = Activity.create({
     activity_value_id: activity_value2.id,
     project_id: project1.id,
-    activity_date: 2020-01-18,
+    activity_date: "2020-01-18",
     notes: "We talked about football",
     important: false,
     archived: false
