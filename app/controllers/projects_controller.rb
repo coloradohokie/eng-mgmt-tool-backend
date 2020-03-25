@@ -10,4 +10,36 @@ class ProjectsController < ApplicationController
         render json: @project, include: :tasks
     end
 
+    def create
+        status_value = StatusValue.find_by(value: params[:status])
+        payment_method_value = PaymentMethodValue.find_by(value: params[:paymentMethodValue])
+        
+        if Client.find_by(name: params[:client])
+            client = Client.find_by(name: params[:client])
+        else
+            client = Client.create(name: params[:client])
+        end
+
+        @project = Project.create(
+            job_number: params[:jobNumber],
+            status_value_id: status_value.id,     # status_value.id,
+            address1: params[:address1],
+            address2: params[:address2],
+            city: params[:city],
+            project_description: params[:projectDescription],
+            payment_method_value_id: payment_method_value.id,
+            client_id: client.id,
+            budget: params[:budget],
+            contract_date: params[:contractDate],
+            st_contract_received_date: params[:stContractReceivedDate],
+            framing_due_date: params[:framingDueDate],
+            foundation_due_date: params[:foundationDueDate],
+            email_from_dwg_received_date: params[:emailFromDwgReceivedDate],
+            contract_proposal_sent_date: params[:contractProposalSentDate],
+            ready_to_be_invoiced: params[:readyToBeInvoiced]
+        )
+
+        render json: @project
+    end
+
 end
