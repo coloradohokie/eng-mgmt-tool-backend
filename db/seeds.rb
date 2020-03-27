@@ -40,7 +40,7 @@ task_cat3 = TaskCategory.create({value: "Foundation", sort_id:3, active:true })
 task_cat4 = TaskCategory.create({value: "Framing", sort_id:4, active:true })
 
 project1 = Project.create({
-    job_number: 100,
+    job_number: 176223,
     status_value_id: status1.id,
     address1: "10 Downing St.",
     address2: "",
@@ -59,7 +59,7 @@ project1 = Project.create({
 })
 
 project4 = Project.create({
-    job_number: 110,
+    job_number: 176110,
     status_value_id: status2.id,
     address1: "2620 E. 2nd Ave",
     address2: "Unit 1",
@@ -78,7 +78,7 @@ project4 = Project.create({
 })
 
 project2 = Project.create({
-    job_number: 101,
+    job_number: 176701,
     status_value_id: status2.id,
     address1: "1600 Pennsylvania Ave.",
     address2: "",
@@ -97,7 +97,7 @@ project2 = Project.create({
 })
 
 project3 = Project.create({
-    job_number: 107,
+    job_number: 176507,
     status_value_id: status1.id,
     address1: "16501 Auraria Pkwy",
     address2: "",
@@ -133,17 +133,80 @@ activity2 = Activity.create({
     archived: false
 })
 
-task1 = Task.create({name: "Print Task Sheet", task_category_id: task_cat1.id, sort_id: 10, active: true})
-task2 = Task.create({name: "Create Folder", task_category_id: task_cat1.id, sort_id: 20, active: true})
-task3 = Task.create({name: "Pin Folder to Quick Access", task_category_id: task_cat2.id, sort_id: 30, active: true})
-task4 = Task.create({name: "Get Drafting Started", task_category_id: task_cat2.id, sort_id: 40, active: true})
-task5 = Task.create({name: "Gravity Calcs", task_category_id: task_cat2.id, sort_id: 50, active: true})
-task6 = Task.create({name: "Lateral Calcs", task_category_id: task_cat3.id, sort_id: 60, active: true})
+task11 = Task.create({name: "Print Task Sheet", task_category_id: task_cat1.id, sort_id: 10, active: true})
+task12 = Task.create({name: "Create Folder", task_category_id: task_cat1.id, sort_id: 20, active: true})
+task13 = Task.create({name: "Pin Folder to Quick Access", task_category_id: task_cat1.id, sort_id: 30, active: true})
+task14 = Task.create({name: "Get Drafting Started", task_category_id: task_cat1.id, sort_id: 40, active: true})
 
-project_task1 = ProjectTask.create({project_id: project1.id, task_id: task1.id, completed: true})
-project_task2 = ProjectTask.create({project_id: project1.id, task_id: task2.id, completed: true})
-project_task3 = ProjectTask.create({project_id: project1.id, task_id: task3.id, completed: false})
-project_task4 = ProjectTask.create({project_id: project1.id, task_id: task4.id, completed: false})
-project_task5 = ProjectTask.create({project_id: project1.id, task_id: task5.id, completed: true})
-project_task6 = ProjectTask.create({project_id: project1.id, task_id: task6.id, completed: false})
+task20 = Task.create({name: "Estimate", task_category_id: task_cat2.id, sort_id: 1, active: true})
+task21 = Task.create({name: "Discuss w/Dale", task_category_id: task_cat2.id, sort_id: 2, active: true})
+task22 = Task.create({name: "Proposal", task_category_id: task_cat2.id, sort_id: 3, active: true})
+task23 = Task.create({name: "Contract", task_category_id: task_cat2.id, sort_id: 4, active: true})
+task24 = Task.create({name: "Send Proposal & Contract", task_category_id: task_cat2.id, sort_id: 5, active: true})
+
+task30 = Task.create({name: "Gravity Calcs", task_category_id: task_cat3.id, sort_id: 1, active: true})
+task31 = Task.create({name: "Lateral Calcs", task_category_id: task_cat3.id, sort_id: 2, active: true})
+task32 = Task.create({name: "Drafting", task_category_id: task_cat3.id, sort_id: 3, active: true})
+task33 = Task.create({name: "Review", task_category_id: task_cat3.id, sort_id: 4, active: true})
+task34 = Task.create({name: "Stamp", task_category_id: task_cat3.id, sort_id: 5, active: true})
+task35 = Task.create({name: "Scan & Save", task_category_id: task_cat3.id, sort_id: 6, active: true})
+task36 = Task.create({name: "Invoice", task_category_id: task_cat3.id, sort_id: 7, active: true})
+task37 = Task.create({name: "Send to Client", task_category_id: task_cat3.id, sort_id: 8, active: true})
+
+task41 = Task.create({name: "Calcs", task_category_id: task_cat4.id, sort_id: 1, active: true})
+task42 = Task.create({name: "Drafting", task_category_id: task_cat4.id, sort_id: 2, active: true})
+task43 = Task.create({name: "Review", task_category_id: task_cat4.id, sort_id: 3, active: true})
+task44 = Task.create({name: "Stamp", task_category_id: task_cat4.id, sort_id: 4, active: true})
+task45 = Task.create({name: "Scan & Save", task_category_id: task_cat4.id, sort_id: 5, active: true})
+task46 = Task.create({name: "Invoice", task_category_id: task_cat4.id, sort_id: 6, active: true})
+task47 = Task.create({name: "Send to Client", task_category_id: task_cat4.id, sort_id: 7, active: true})
+
+
+
+
+ProjectTask.create({project_id: project1.id, task_id: task11.id, completed: false})
+ProjectTask.create({project_id: project1.id, task_id: task12.id, completed: false})
+ProjectTask.create({project_id: project1.id, task_id: task13.id, completed: false})
+ProjectTask.create({project_id: project1.id, task_id: task14.id, completed: false})
+ProjectTask.create({project_id: project1.id, task_id: task30.id, completed: false})
+ProjectTask.create({project_id: project1.id, task_id: task31.id, completed: false})
+ProjectTask.create({project_id: project1.id, task_id: task32.id, completed: false})
+ProjectTask.create({project_id: project1.id, task_id: task33.id, completed: false})
+ProjectTask.create({project_id: project1.id, task_id: task34.id, completed: false})
+ProjectTask.create({project_id: project1.id, task_id: task35.id, completed: false})
+ProjectTask.create({project_id: project1.id, task_id: task36.id, completed: false})
+ProjectTask.create({project_id: project1.id, task_id: task37.id, completed: false})
+ProjectTask.create({project_id: project1.id, task_id: task41.id, completed: false})
+ProjectTask.create({project_id: project1.id, task_id: task42.id, completed: false})
+ProjectTask.create({project_id: project1.id, task_id: task43.id, completed: false})
+ProjectTask.create({project_id: project1.id, task_id: task44.id, completed: false})
+ProjectTask.create({project_id: project1.id, task_id: task45.id, completed: false})
+ProjectTask.create({project_id: project1.id, task_id: task46.id, completed: false})
+ProjectTask.create({project_id: project1.id, task_id: task47.id, completed: false})
+
+ProjectTask.create({project_id: project2.id, task_id: task11.id, completed: false})
+ProjectTask.create({project_id: project2.id, task_id: task12.id, completed: false})
+ProjectTask.create({project_id: project2.id, task_id: task13.id, completed: false})
+ProjectTask.create({project_id: project2.id, task_id: task14.id, completed: false})
+ProjectTask.create({project_id: project2.id, task_id: task30.id, completed: false})
+ProjectTask.create({project_id: project2.id, task_id: task31.id, completed: false})
+ProjectTask.create({project_id: project2.id, task_id: task32.id, completed: false})
+ProjectTask.create({project_id: project2.id, task_id: task33.id, completed: false})
+ProjectTask.create({project_id: project2.id, task_id: task34.id, completed: false})
+ProjectTask.create({project_id: project2.id, task_id: task35.id, completed: false})
+ProjectTask.create({project_id: project2.id, task_id: task36.id, completed: false})
+ProjectTask.create({project_id: project2.id, task_id: task37.id, completed: false})
+ProjectTask.create({project_id: project2.id, task_id: task41.id, completed: false})
+ProjectTask.create({project_id: project2.id, task_id: task42.id, completed: false})
+ProjectTask.create({project_id: project2.id, task_id: task43.id, completed: false})
+ProjectTask.create({project_id: project2.id, task_id: task44.id, completed: false})
+ProjectTask.create({project_id: project2.id, task_id: task45.id, completed: false})
+ProjectTask.create({project_id: project2.id, task_id: task46.id, completed: false})
+ProjectTask.create({project_id: project2.id, task_id: task47.id, completed: false})
+
+ProjectTask.create({project_id: project3.id, task_id: task20.id, completed: false})
+ProjectTask.create({project_id: project3.id, task_id: task21.id, completed: false})
+ProjectTask.create({project_id: project3.id, task_id: task22.id, completed: false})
+ProjectTask.create({project_id: project3.id, task_id: task23.id, completed: false})
+ProjectTask.create({project_id: project3.id, task_id: task24.id, completed: false})
 
