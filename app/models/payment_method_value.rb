@@ -1,2 +1,0 @@
-class PaymentMethodValue < ApplicationRecord
-end

@@ -1,2 +1,0 @@
-class ActivityValue < ApplicationRecord
-end
