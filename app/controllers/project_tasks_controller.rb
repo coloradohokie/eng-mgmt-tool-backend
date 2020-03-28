@@ -19,8 +19,8 @@ class ProjectTasksController < ApplicationController
     end
 
     def create
-        status_value = StatusValue.find_by(value: params[:status])
-        payment_method_value = PaymentMethodValue.find_by(value: params[:paymentMethodValue])
+        status = Status.find_by(value: params[:status])
+        payment_method = PaymentMethod.find_by(value: params[:paymentMethodValue])
         
         if Client.find_by(name: params[:client])
             client = Client.find_by(name: params[:client])
@@ -30,12 +30,12 @@ class ProjectTasksController < ApplicationController
 
         @project = Project.create(
             job_number: params[:jobNumber],
-            status_value_id: status_value.id,
+            status_value_id: status.id,
             address1: params[:address1],
             address2: params[:address2],
             city: params[:city],
             project_description: params[:projectDescription],
-            payment_method_value_id: payment_method_value.id,
+            payment_method_value_id: payment_method.id,
             client_id: client.id,
             budget: params[:budget],
             contract_date: params[:contractDate],

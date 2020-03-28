@@ -10,22 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_22_195424) do
+ActiveRecord::Schema.define(version: 2020_03_28_221125) do
 
   create_table "activities", force: :cascade do |t|
-    t.integer "activity_value_id", null: false
-    t.integer "project_id", null: false
-    t.date "activity_date"
-    t.text "notes"
-    t.boolean "important"
-    t.boolean "archived"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["activity_value_id"], name: "index_activities_on_activity_value_id"
-    t.index ["project_id"], name: "index_activities_on_project_id"
-  end
-
-  create_table "activity_values", force: :cascade do |t|
     t.string "value"
     t.integer "sort_id"
     t.boolean "active"
@@ -41,12 +28,25 @@ ActiveRecord::Schema.define(version: 2020_03_22_195424) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "payment_method_values", force: :cascade do |t|
+  create_table "payment_methods", force: :cascade do |t|
     t.string "value"
     t.integer "sort_id"
     t.boolean "active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "project_activities", force: :cascade do |t|
+    t.integer "activity_id", null: false
+    t.integer "project_id", null: false
+    t.date "activity_date"
+    t.text "notes"
+    t.boolean "important"
+    t.boolean "archived"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["activity_id"], name: "index_project_activities_on_activity_id"
+    t.index ["project_id"], name: "index_project_activities_on_project_id"
   end
 
   create_table "project_tasks", force: :cascade do |t|
@@ -62,12 +62,12 @@ ActiveRecord::Schema.define(version: 2020_03_22_195424) do
 
   create_table "projects", force: :cascade do |t|
     t.integer "job_number", null: false
-    t.integer "status_value_id", null: false
+    t.integer "status_id", null: false
     t.string "address1", null: false
     t.string "address2"
     t.string "city"
     t.text "project_description"
-    t.integer "payment_method_value_id", null: false
+    t.integer "payment_method_id", null: false
     t.integer "client_id"
     t.integer "budget"
     t.date "contract_date"
@@ -82,11 +82,11 @@ ActiveRecord::Schema.define(version: 2020_03_22_195424) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["client_id"], name: "index_projects_on_client_id"
-    t.index ["payment_method_value_id"], name: "index_projects_on_payment_method_value_id"
-    t.index ["status_value_id"], name: "index_projects_on_status_value_id"
+    t.index ["payment_method_id"], name: "index_projects_on_payment_method_id"
+    t.index ["status_id"], name: "index_projects_on_status_id"
   end
 
-  create_table "status_values", force: :cascade do |t|
+  create_table "statuses", force: :cascade do |t|
     t.string "value"
     t.integer "sort_id"
     t.boolean "active"
@@ -112,12 +112,12 @@ ActiveRecord::Schema.define(version: 2020_03_22_195424) do
     t.index ["task_category_id"], name: "index_tasks_on_task_category_id"
   end
 
-  add_foreign_key "activities", "activity_values"
-  add_foreign_key "activities", "projects"
+  add_foreign_key "project_activities", "activities"
+  add_foreign_key "project_activities", "projects"
   add_foreign_key "project_tasks", "projects"
   add_foreign_key "project_tasks", "tasks"
   add_foreign_key "projects", "clients"
-  add_foreign_key "projects", "payment_method_values"
-  add_foreign_key "projects", "status_values"
+  add_foreign_key "projects", "payment_methods"
+  add_foreign_key "projects", "statuses"
   add_foreign_key "tasks", "task_categories"
 end

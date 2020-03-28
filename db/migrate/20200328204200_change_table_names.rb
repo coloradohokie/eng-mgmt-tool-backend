@@ -3,6 +3,7 @@ class ChangeTableNames < ActiveRecord::Migration[6.0]
     rename_table :activities, :project_activities
     rename_table :activity_values, :activities
     rename_table :payment_method_values, :payment_methods
-    rename_table :status_values, :status
+    rename_table :status_values, :statuses
+
   end
 end
