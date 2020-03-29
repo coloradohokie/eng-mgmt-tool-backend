@@ -30,12 +30,12 @@ class ProjectTasksController < ApplicationController
 
         @project = Project.create(
             job_number: params[:jobNumber],
-            status_value_id: status.id,
+            status_id: status.id,
             address1: params[:address1],
             address2: params[:address2],
             city: params[:city],
             project_description: params[:projectDescription],
-            payment_method_value_id: payment_method.id,
+            payment_method_id: payment_method.id,
             client_id: client.id,
             budget: params[:budget],
             contract_date: params[:contractDate],
