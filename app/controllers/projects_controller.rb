@@ -22,13 +22,37 @@ class ProjectsController < ApplicationController
 
         @project = Project.create(
             job_number: params[:jobNumber],
-            status_value_id: status.id,
+            status_id: status.id,
             address1: params[:address1],
             address2: params[:address2],
             city: params[:city],
             project_description: params[:projectDescription],
             payment_method_value_id: payment_method.id,
             client_id: client.id,
+            budget: params[:budget],
+            contract_date: params[:contractDate],
+            st_contract_received_date: params[:stContractReceivedDate],
+            framing_due_date: params[:framingDueDate],
+            foundation_due_date: params[:foundationDueDate],
+            email_from_dwg_received_date: params[:emailFromDwgReceivedDate],
+            contract_proposal_sent_date: params[:contractProposalSentDate],
+            ready_to_be_invoiced: params[:readyToBeInvoiced]
+        )
+
+        render json: @project
+    end
+
+    def update
+        @project = Project.find(params[:id])
+        @project.update(
+            job_number: params[:job_number],
+            status_id: params[:status_id],
+            address1: params[:address1],
+            address2: params[:address2],
+            city: params[:city],
+            project_description: params[:projectDescription],
+            payment_method_id: params[:payment_method_id],
+            client_id: params[:client_id],
             budget: params[:budget],
             contract_date: params[:contractDate],
             st_contract_received_date: params[:stContractReceivedDate],
