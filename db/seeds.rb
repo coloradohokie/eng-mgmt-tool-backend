@@ -10,29 +10,29 @@
 
 ProjectTask.destroy_all
 Task.destroy_all
-Activity.destroy_all
+ProjectActivity.destroy_all
 Project.destroy_all
 
 Client.destroy_all
-StatusValue.destroy_all
-PaymentMethodValue.destroy_all
-ActivityValue.destroy_all
+Status.destroy_all
+PaymentMethod.destroy_all
+Activity.destroy_all
 TaskCategory.destroy_all
 
 client1 = Client.create({name:"John Roebling", phone:"212-231-3324", email:"jroebling@brooklyn.us"})
 client2 = Client.create({name:"Louis Skidmore", phone: "312-554-9090", email: "Louis@som.com"})
 
-status1 = StatusValue.create({value:"Proposed", sort_id:1, active:true})
-status2 = StatusValue.create({value:"Open", sort_id:2, active:true})
-status3 = StatusValue.create({value:"On Hold", sort_id:3, active:true})
-status4 = StatusValue.create({value:"Completed", sort_id:4, active:true})
+status1 = Status.create({value:"Proposed", sort_id:1, active:true})
+status2 = Status.create({value:"Open", sort_id:2, active:true})
+status3 = Status.create({value:"On Hold", sort_id:3, active:true})
+status4 = Status.create({value:"Completed", sort_id:4, active:true})
 
-payment1 = PaymentMethodValue.create({value:"Cash on Delivery", sort_id:1, active:true})
-payment2 = PaymentMethodValue.create({value:"Credit", sort_id:2, active:true})
+payment1 = PaymentMethod.create({value:"Cash on Delivery", sort_id:1, active:true})
+payment2 = PaymentMethod.create({value:"Credit", sort_id:2, active:true})
 
-activity_value1 = ActivityValue.create({value: "Phone Call", sort_id:1, active: true })
-activity_value2 = ActivityValue.create({value: "Internal Note", sort_id:2, active: true })
-activity_value3 = ActivityValue.create({value: "System Audit", sort_id:3, active: true })
+activity_value1 = Activity.create({value: "Phone Call", sort_id:1, active: true })
+activity_value2 = Activity.create({value: "Internal Note", sort_id:2, active: true })
+activity_value3 = Activity.create({value: "System Audit", sort_id:3, active: true })
 
 task_cat1 = TaskCategory.create({value: "Main", sort_id:1, active:true })
 task_cat2 = TaskCategory.create({value: "Proposal", sort_id:2, active:true })
@@ -41,12 +41,12 @@ task_cat4 = TaskCategory.create({value: "Framing", sort_id:4, active:true })
 
 project1 = Project.create({
     job_number: 176223,
-    status_value_id: status1.id,
+    status_id: status1.id,
     address1: "10 Downing St.",
     address2: "",
     city: "London",
     project_description: "Repair crack in foundation of country",
-    payment_method_value_id: payment1.id,
+    payment_method_id: payment1.id,
     client_id: client2.id,
     budget: 100000,
     contract_date: "2020-01-02",
@@ -60,12 +60,12 @@ project1 = Project.create({
 
 project4 = Project.create({
     job_number: 176110,
-    status_value_id: status2.id,
+    status_id: status2.id,
     address1: "2620 E. 2nd Ave",
     address2: "Unit 1",
     city: "Denver",
     project_description: "Repair roof so as not to leak",
-    payment_method_value_id: payment2.id,
+    payment_method_id: payment2.id,
     client_id: client2.id,
     budget: 100000,
     contract_date: "2020-01-02",
@@ -79,12 +79,12 @@ project4 = Project.create({
 
 project2 = Project.create({
     job_number: 176701,
-    status_value_id: status2.id,
+    status_id: status2.id,
     address1: "1600 Pennsylvania Ave.",
     address2: "",
     city: "Washington",
     project_description: "reinforce bullet proof glass",
-    payment_method_value_id: payment1.id,
+    payment_method_id: payment1.id,
     client_id: client2.id,
     budget: 100000,
     contract_date: "2020-01-02",
@@ -98,12 +98,12 @@ project2 = Project.create({
 
 project3 = Project.create({
     job_number: 176507,
-    status_value_id: status1.id,
+    status_id: status1.id,
     address1: "16501 Auraria Pkwy",
     address2: "",
     city: "Denver",
     project_description: "Install successful basketball team",
-    payment_method_value_id: payment1.id,
+    payment_method_id: payment1.id,
     client_id: client2.id,
     budget: 100000,
     contract_date: "2020-01-02",
@@ -115,8 +115,8 @@ project3 = Project.create({
     ready_to_be_invoiced: false
 })
 
-activity1 = Activity.create({
-    activity_value_id: activity_value1.id,
+activity1 = ProjectActivity.create({
+    activity_id: activity_value1.id,
     project_id: project1.id,
     activity_date: "2020-01-15",
     notes: "We talked about the weather",
@@ -124,8 +124,8 @@ activity1 = Activity.create({
     archived: false
 })
 
-activity2 = Activity.create({
-    activity_value_id: activity_value2.id,
+activity2 = ProjectActivity.create({
+    activity_id: activity_value2.id,
     project_id: project1.id,
     activity_date: "2020-01-18",
     notes: "We talked about football",
