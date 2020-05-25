@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_28_221125) do
+ActiveRecord::Schema.define(version: 2020_05_25_234711) do
 
   create_table "activities", force: :cascade do |t|
     t.string "value"
@@ -49,17 +49,6 @@ ActiveRecord::Schema.define(version: 2020_03_28_221125) do
     t.index ["project_id"], name: "index_project_activities_on_project_id"
   end
 
-  create_table "project_tasks", force: :cascade do |t|
-    t.integer "project_id", null: false
-    t.integer "task_id", null: false
-    t.boolean "completed"
-    t.date "completed_date"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["project_id"], name: "index_project_tasks_on_project_id"
-    t.index ["task_id"], name: "index_project_tasks_on_task_id"
-  end
-
   create_table "projects", force: :cascade do |t|
     t.integer "job_number", null: false
     t.integer "status_id", null: false
@@ -94,8 +83,18 @@ ActiveRecord::Schema.define(version: 2020_03_28_221125) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "task_categories", force: :cascade do |t|
-    t.string "value"
+  create_table "task_template_tasks", force: :cascade do |t|
+    t.string "name"
+    t.integer "task_template_id", null: false
+    t.integer "sort_id"
+    t.boolean "active"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["task_template_id"], name: "index_task_template_tasks_on_task_template_id"
+  end
+
+  create_table "task_templates", force: :cascade do |t|
+    t.string "name"
     t.integer "sort_id"
     t.boolean "active"
     t.datetime "created_at", precision: 6, null: false
@@ -104,20 +103,21 @@ ActiveRecord::Schema.define(version: 2020_03_28_221125) do
 
   create_table "tasks", force: :cascade do |t|
     t.string "name"
-    t.integer "task_category_id", null: false
     t.integer "sort_id"
     t.boolean "active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["task_category_id"], name: "index_tasks_on_task_category_id"
+    t.integer "project_id"
+    t.string "group"
+    t.boolean "done"
+    t.index ["project_id"], name: "index_tasks_on_project_id"
   end
 
   add_foreign_key "project_activities", "activities"
   add_foreign_key "project_activities", "projects"
-  add_foreign_key "project_tasks", "projects"
-  add_foreign_key "project_tasks", "tasks"
   add_foreign_key "projects", "clients"
   add_foreign_key "projects", "payment_methods"
   add_foreign_key "projects", "statuses"
-  add_foreign_key "tasks", "task_categories"
+  add_foreign_key "task_template_tasks", "task_templates"
+  add_foreign_key "tasks", "projects"
 end
