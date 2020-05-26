@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_25_234711) do
+ActiveRecord::Schema.define(version: 2020_05_25_225528) do
 
   create_table "activities", force: :cascade do |t|
     t.string "value"
@@ -102,14 +102,14 @@ ActiveRecord::Schema.define(version: 2020_05_25_234711) do
   end
 
   create_table "tasks", force: :cascade do |t|
+    t.integer "project_id", null: false
     t.string "name"
+    t.string "template_name"
+    t.boolean "done"
     t.integer "sort_id"
     t.boolean "active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "project_id"
-    t.string "group"
-    t.boolean "done"
     t.index ["project_id"], name: "index_tasks_on_project_id"
   end
 

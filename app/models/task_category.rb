@@ -1,2 +1,0 @@
-class TaskCategory < ApplicationRecord
-end

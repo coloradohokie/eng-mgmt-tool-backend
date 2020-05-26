@@ -1,7 +1,7 @@
-class CreateActivities < ActiveRecord::Migration[6.0]
+class CreateProjectActivities < ActiveRecord::Migration[6.0]
   def change
-    create_table :activities do |t|
-      t.references :activity_value, null: false, foreign_key: true
+    create_table :project_activities do |t|
+      t.references :activity, null: false, foreign_key: true
       t.references :project, null: false, foreign_key: true
       t.date :activity_date
       t.text :notes

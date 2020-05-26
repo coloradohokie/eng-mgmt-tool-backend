@@ -2,12 +2,12 @@ class CreateProjects < ActiveRecord::Migration[6.0]
   def change
     create_table :projects do |t|
       t.integer :job_number, null: false
-      t.references :status_value, null: false, foreign_key: true
+      t.references :status, null: false, foreign_key: true
       t.string :address1, null: false
       t.string :address2
       t.string :city
       t.text :project_description
-      t.references :payment_method_value, null: false, foreign_key: true
+      t.references :payment_method, null: false, foreign_key: true
       t.references :client, foreign_key: true
       t.integer :budget
       t.date :contract_date
