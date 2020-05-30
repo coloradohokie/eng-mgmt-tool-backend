@@ -7,7 +7,7 @@ class TaskTemplatesController < ApplicationController
 
     def create
         @task_template = TaskTemplate.create(
-            name: params[:name],
+            value: params[:value],
             sort_id: params[:sort_id],
             active: params[:active]
         )

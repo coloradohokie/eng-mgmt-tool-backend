@@ -7,7 +7,7 @@ class ActivitiesController < ApplicationController
 
     def create
         @activity = Activity.create(
-            name: params[:name],
+            value: params[:value],
             sort_id: params[:sort_id],
             active: params[:active]
         )

@@ -7,9 +7,9 @@ class StatusesController < ApplicationController
 
     def create
         @status = Status.create(
-            name: params[:name],
+            value: params[:value],
             sort_id: params[:sort_id],
-            active: param[:active]
+            active: params[:active]
         )
         render json:@status, status: 200
     end

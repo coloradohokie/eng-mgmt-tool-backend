@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_25_225528) do
+ActiveRecord::Schema.define(version: 2020_05_30_162817) do
 
   create_table "activities", force: :cascade do |t|
     t.string "value"
@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 2020_05_25_225528) do
   end
 
   create_table "task_templates", force: :cascade do |t|
-    t.string "name"
+    t.string "value"
     t.integer "sort_id"
     t.boolean "active"
     t.datetime "created_at", precision: 6, null: false
