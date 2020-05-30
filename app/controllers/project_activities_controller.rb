@@ -14,7 +14,7 @@ class ProjectActivitiesController < ApplicationController
             important: params[:important],
             archived: params[:archived]
         )
-        render json:@activity, status: 200
+        render json:@activity, include: [:project, :activity], status: 200
     end
 
 end
