@@ -21,22 +21,22 @@ class ProjectsController < ApplicationController
         end
 
         @project = Project.create(
-            job_number: params[:jobNumber],
+            job_number: params[:job_number],
             status_id: status.id,
             address1: params[:address1],
             address2: params[:address2],
             city: params[:city],
-            project_description: params[:projectDescription],
-            payment_method_value_id: payment_method.id,
+            project_description: params[:project_description],
+            payment_method_id: payment_method.id,
             client_id: client.id,
             budget: params[:budget],
-            contract_date: params[:contractDate],
-            st_contract_received_date: params[:stContractReceivedDate],
-            framing_due_date: params[:framingDueDate],
-            foundation_due_date: params[:foundationDueDate],
-            email_from_dwg_received_date: params[:emailFromDwgReceivedDate],
-            contract_proposal_sent_date: params[:contractProposalSentDate],
-            ready_to_be_invoiced: params[:readyToBeInvoiced]
+            contract_date: params[:contract_date],
+            st_contract_received_date: params[:st_contract_received_date],
+            framing_due_date: params[:framing_due_date],
+            foundation_due_date: params[:foundation_due_date],
+            email_from_dwg_received_date: params[:email_from_dwg_received_date],
+            contract_proposal_sent_date: params[:contract_proposal_sent_date],
+            ready_to_be_invoiced: params[:ready_to_be_invoiced]
         )
 
         render json: @project
@@ -50,17 +50,17 @@ class ProjectsController < ApplicationController
             address1: params[:address1],
             address2: params[:address2],
             city: params[:city],
-            project_description: params[:projectDescription],
+            project_description: params[:project_description],
             payment_method_id: params[:payment_method_id],
             client_id: params[:client_id],
             budget: params[:budget],
-            contract_date: params[:contractDate],
-            st_contract_received_date: params[:stContractReceivedDate],
-            framing_due_date: params[:framingDueDate],
-            foundation_due_date: params[:foundationDueDate],
-            email_from_dwg_received_date: params[:emailFromDwgReceivedDate],
-            contract_proposal_sent_date: params[:contractProposalSentDate],
-            ready_to_be_invoiced: params[:readyToBeInvoiced]
+            contract_date: params[:contract_date],
+            st_contract_received_date: params[:st_contract_received_date],
+            framing_due_date: params[:framing_due_date],
+            foundation_due_date: params[:foundation_due_date],
+            email_from_dwg_received_date: params[:email_from_dwg_received_date],
+            contract_proposal_sent_date: params[:contract_proposal_sent_date],
+            ready_to_be_invoiced: params[:ready_to_be_invoiced]
         )
 
         render json: @project
