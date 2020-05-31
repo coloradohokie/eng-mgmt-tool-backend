@@ -10,6 +10,21 @@ class ProjectsController < ApplicationController
         render json: @project, include: :tasks
     end
 
+    def get_tasks(task_template_value)
+        template_id = TaskTemplate.find_by(value: task_template_value).id
+        task_list = TaskTemplateTask.select {|task_template_task| task_template_task.task_template_id == template_id}
+        task_list.map { |task_template_task| 
+            @project_task = Task.create(
+                project_id: @project.id,
+                name: task_template_task.name,
+                template_name: task_template_value,
+                done: false,
+                active: true,
+                sort_id: task_template_task.sort_id
+            )
+        }
+    end
+
     def create
         status = Status.find_by(value: params[:status])
         payment_method = PaymentMethod.find_by(value: params[:paymentMethodValue])
@@ -21,25 +36,42 @@ class ProjectsController < ApplicationController
         end
 
         @project = Project.create(
-            job_number: params[:job_number],
+            job_number: params[:jobNumber],
             status_id: status.id,
             address1: params[:address1],
             address2: params[:address2],
             city: params[:city],
-            project_description: params[:project_description],
+            project_description: params[:projectDescription],
             payment_method_id: payment_method.id,
             client_id: client.id,
             budget: params[:budget],
-            contract_date: params[:contract_date],
-            st_contract_received_date: params[:st_contract_received_date],
-            framing_due_date: params[:framing_due_date],
-            foundation_due_date: params[:foundation_due_date],
-            email_from_dwg_received_date: params[:email_from_dwg_received_date],
-            contract_proposal_sent_date: params[:contract_proposal_sent_date],
-            ready_to_be_invoiced: params[:ready_to_be_invoiced]
+            contract_date: params[:contractDate],
+            st_contract_received_date: params[:stContractReceivedDate],
+            framing_due_date: params[:framingDueDate],
+            foundation_due_date: params[:foundationDueDate],
+            email_from_dwg_received_date: params[:emailFromDwgReceivedDate],
+            contract_proposal_sent_date: params[:contractProposalSentDate],
+            ready_to_be_invoiced: params[:readyToBeInvoiced],
+            trusses_received_date: params[:trussesReceivedDate]
         )
 
-        render json: @project
+        if params[:proposalTemplate]
+            get_tasks("Proposal")
+        end
+
+        if params[:framingTemplate]
+            get_tasks("Framing")
+        end
+
+        if params[:foundationTemplate]
+            get_tasks("Foundation")
+        end
+
+        if (params[:framingTemplate] || params[:foundationTemplate])
+            get_tasks("Main")
+        end
+
+        render json: @project, status: 200
     end
 
     def update
