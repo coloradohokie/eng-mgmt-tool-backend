@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_30_162817) do
+ActiveRecord::Schema.define(version: 2020_06_02_025116) do
 
   create_table "activities", force: :cascade do |t|
     t.string "value"
@@ -70,6 +70,7 @@ ActiveRecord::Schema.define(version: 2020_05_30_162817) do
     t.date "ready_to_be_invoiced_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "last_action"
     t.index ["client_id"], name: "index_projects_on_client_id"
     t.index ["payment_method_id"], name: "index_projects_on_payment_method_id"
     t.index ["status_id"], name: "index_projects_on_status_id"

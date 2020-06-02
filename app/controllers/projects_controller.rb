@@ -52,7 +52,8 @@ class ProjectsController < ApplicationController
             email_from_dwg_received_date: params[:emailFromDwgReceivedDate],
             contract_proposal_sent_date: params[:contractProposalSentDate],
             ready_to_be_invoiced: params[:readyToBeInvoiced],
-            trusses_received_date: params[:trussesReceivedDate]
+            trusses_received_date: params[:trussesReceivedDate],
+            last_action: "Project Created"
         )
 
         if params[:proposalTemplate]
@@ -92,7 +93,8 @@ class ProjectsController < ApplicationController
             foundation_due_date: params[:foundation_due_date],
             email_from_dwg_received_date: params[:email_from_dwg_received_date],
             contract_proposal_sent_date: params[:contract_proposal_sent_date],
-            ready_to_be_invoiced: params[:ready_to_be_invoiced]
+            ready_to_be_invoiced: params[:ready_to_be_invoiced],
+            last_action: params[:last_action]
         )
 
         render json: @project
