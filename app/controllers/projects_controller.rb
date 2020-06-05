@@ -1,8 +1,14 @@
 class ProjectsController < ApplicationController
 
+    before_action :authenticate, only: [:index]
     def index
         @projects = Project.all
-        render json: @projects, include: [:tasks, :client, :payment_method, :status]
+        @activities = ProjectActivity.all
+        #change to @projects = Project.where(owner_id: payload["user_id"])
+        #once you have owner set up in the project table
+        render json: {projects: @projects}, include: [:tasks, :client, :payment_method, :status]
+        #, include: [:tasks, :client, :payment_method, :status]
+        #change above to long form and include projectTasks, Tasks, and all other calls from App.js
     end
 
     def show
