@@ -6,7 +6,8 @@ class ProjectsController < ApplicationController
         @activities = ProjectActivity.all
         #change to @projects = Project.where(owner_id: payload["user_id"])
         #once you have owner set up in the project table
-        render json: {projects: @projects}, include: [:tasks, :client, :payment_method, :status]
+        # response =  @projects, include: [:tasks, :client, :payment_method, :status] 
+        render json: @projects, include: [:tasks, :client, :payment_method, :status]
         #, include: [:tasks, :client, :payment_method, :status]
         #change above to long form and include projectTasks, Tasks, and all other calls from App.js
     end
