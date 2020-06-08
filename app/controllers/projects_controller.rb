@@ -3,13 +3,48 @@ class ProjectsController < ApplicationController
     before_action :authenticate, only: [:index]
     def index
         @projects = Project.all
-        @activities = ProjectActivity.all
+        @project_activities = ProjectActivity.all
+        @statuses = Status.all
+        @task_templates = TaskTemplate.all
+        @activities = Activity.all
+        project_list = []
+        @projects.map { |project|
+            project_item = {}
+            project_item[:id] = project.id
+            project_item[:job_number] = project.job_number
+            project_item[:status_id] = project.status.id
+            project_item[:address1] = project.address1
+            project_item[:address2] = project.address2
+            project_item[:city] = project.city
+            project_item[:project_description] = project.project_description
+            project_item[:payment_method_id] = project.payment_method.id
+            project_item[:client_id] = project.client.id
+            project_item[:budget] = project.budget
+            project_item[:contract_date] = project.contract_date
+            project_item[:st_contract_received_date] = project.st_contract_received_date
+            project_item[:framing_due_date] = project.framing_due_date
+            project_item[:foundation_due_date] = project.foundation_due_date
+            project_item[:email_from_dwg_received_date] = project.email_from_dwg_received_date
+            project_item[:contract_proposal_sent_date] = project.contract_proposal_sent_date
+            project_item[:ready_to_be_invoiced] = project.ready_to_be_invoiced
+            project_item[:trusses_received_date] = project.trusses_received_date
+            project_item[:last_action] = project.last_action
+            project_item[:created_at] = project.created_at
+            project_item[:updated_at] = project.updated_at
+            tasks = Task.select{ |task| task.project_id == project.id}
+            project_item[:tasks] = tasks
+            client = Client.find{ |client| client.id == project.client.id}
+            project_item[:client] = client
+            payment_method = PaymentMethod.find { |pm| pm.id == project.payment_method.id}
+            project_item[:payment_method] = payment_method
+            status = Status.find { |s| s.id == project.status.id}
+            project_item[:status] = status
+            project_list.push(project_item)   
+        }
+
+        render json: {projects: project_list, project_activities: @project_activities, statuses: @statuses, task_templates: @task_templates, activities: @activities}
         #change to @projects = Project.where(owner_id: payload["user_id"])
         #once you have owner set up in the project table
-        # response =  @projects, include: [:tasks, :client, :payment_method, :status] 
-        render json: @projects, include: [:tasks, :client, :payment_method, :status]
-        #, include: [:tasks, :client, :payment_method, :status]
-        #change above to long form and include projectTasks, Tasks, and all other calls from App.js
     end
 
     def show
