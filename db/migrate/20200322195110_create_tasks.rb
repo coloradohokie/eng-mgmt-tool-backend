@@ -2,8 +2,8 @@ class CreateTasks < ActiveRecord::Migration[6.0]
   def change
     create_table :tasks do |t|
       t.references :project, null: false, foreign_key: true
-      t.string :name
-      t.string :template_name
+      t.text :name
+      t.text :template_name
       t.boolean :done
       t.integer :sort_id
       t.boolean :active
