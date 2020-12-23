@@ -13,4 +13,10 @@ class StatusesController < ApplicationController
         )
         render json:@status, status: 200
     end
+
+    def destroy
+        @status = Status.find(params[:id])
+        @status.destroy
+        render status: 200
+    end
 end

@@ -1,14 +1,16 @@
 class ApplicationController < ActionController::API
+
+    before_action :authenticate
+
     def authenticate
         authorization_header = request.headers["Authorization"]
 
         if !authorization_header
-            render json: {error: "Must be logged in"}, status: :unauthorized
+            render json: {error: "No token present"}, status: :unauthorized
         else
-            token = authorization_header.split(' ')[1]
-            secret = Rails.application.secrets.secret_key_base
-
             begin
+                token = authorization_header.split(' ')[1]
+                secret = Rails.application.secrets.secret_key_base
                 payload = JWT.decode(token, secret).first
             rescue
                 render json: { error: "Invalid Token" }, status: :unauthorized
