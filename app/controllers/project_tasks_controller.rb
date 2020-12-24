@@ -79,7 +79,7 @@ class ProjectTasksController < ApplicationController
             completed: params[:completed],
             completed_date: params[:completed_date]
         )
-        render json: @project_task, json: ProjectTask.find(params[:id]), status: :accepted
+        render json: ProjectTask.find(params[:id]), status: :accepted
     end
 
 

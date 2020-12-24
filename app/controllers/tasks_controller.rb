@@ -28,7 +28,7 @@ class TasksController < ApplicationController
             sort_id: params[:sort_id],
             active: params[:active]
         )
-        render json: @task, json: Task.find(params[:id]), status: :accepted
+        render json: @task, status: :accepted
     end
 
 end
