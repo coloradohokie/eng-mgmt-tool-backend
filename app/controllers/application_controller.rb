@@ -9,8 +9,9 @@ class ApplicationController < ActionController::API
             render json: {error: "no token present"}, status: :unauthorized
         else
             begin
+                byebug
                 token = header.split(" ")[1]
-                secret = Rails.application.secret_key_base
+                secret = Rails.application.secrets.secret_key_base
                 payload = JWT.decode(token, secret)[0]
                 
                 @user = User.find payload["user_id"]
