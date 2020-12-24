@@ -1,6 +1,5 @@
 class ProjectsController < ApplicationController
 
-    before_action :authenticate, only: [:index]
     def index
         @projects = Project.all
         @project_activities = ProjectActivity.all
