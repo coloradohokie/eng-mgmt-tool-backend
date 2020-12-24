@@ -3,18 +3,19 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
   username: postgres
+  password: dominion-1
 
 
 development:
   <<: *default
-  database: engineering_project_manager_api_development
+  database: engineering_project_manager_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: engineering_project_manager_api_test
+  database: engineering_project_manager_test
 
 production:
   <<: *default
