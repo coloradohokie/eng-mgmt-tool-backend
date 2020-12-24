@@ -11,7 +11,10 @@ class ApplicationController < ActionController::API
             begin
                 byebug
                 token = header.split(" ")[1]
+                puts token
                 secret = Rails.application.secrets.secret_key_base
+                puts secret
+                puts JWT.decode(token, secret)[first]
                 payload = JWT.decode(token, secret)[0]
                 @user =  payload["user_id"]
             rescue
