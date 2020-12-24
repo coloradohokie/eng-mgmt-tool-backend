@@ -10,7 +10,7 @@ class ApplicationController < ActionController::API
         else
             begin
                 token = header.split(" ")[1]
-                secret = Rails.application.secrets.secret_key_base
+                secret = ENV['SECRET_KEY_BASE']
                 payload = JWT.decode(token, secret)[0]
                 @user =  payload["user_id"]
             rescue
