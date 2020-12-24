@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-    skip_before_action :authenticate, only: [:create, :index]
+    # skip_before_action :authenticate, only: [:create, :index]
 
     def create
         @user = User.create(
