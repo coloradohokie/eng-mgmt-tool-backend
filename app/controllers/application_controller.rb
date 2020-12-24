@@ -14,7 +14,7 @@ class ApplicationController < ActionController::API
                 payload = JWT.decode(token, secret)[0]
                 @user =  payload["user_id"]
             rescue
-                render json: {error: "Bad token"}, status: :unauthorized
+                render json: {error: "Bad token", header: header, secret: Rails.application.secrets.secret_key_base }, status: :unauthorized
             end
         end
     end
