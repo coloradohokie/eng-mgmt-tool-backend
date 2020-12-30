@@ -6,12 +6,13 @@ class ActivitiesController < ApplicationController
     end
 
     def create
-        @activity = Activity.create(
-            value: params[:value],
-            sort_id: params[:sort_id],
-            active: params[:active]
-        )
+        @activity = Activity.create(activity_params)
         render json: @activity, status: 200
+    end
+
+    private
+    def activity_params
+        params.require(:activity).permit(:value, :sort_id, :active)
     end
 
 end

@@ -6,11 +6,7 @@ class StatusesController < ApplicationController
     end
 
     def create
-        @status = Status.create(
-            value: params[:value],
-            sort_id: params[:sort_id],
-            active: params[:active]
-        )
+        @status = Status.create(status_params)
         render json:@status, status: 200
     end
 
@@ -18,5 +14,11 @@ class StatusesController < ApplicationController
         @status = Status.find(params[:id])
         @status.destroy
         render status: 200
+    end
+
+    private
+
+    def status_params
+        params.require(:status).permit(:value, :sort_id, :active)
     end
 end

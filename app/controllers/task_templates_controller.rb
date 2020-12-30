@@ -14,4 +14,8 @@ class TaskTemplatesController < ApplicationController
         render json:@task_template, status: 200
     end
 
+    private
+    def task_template_params
+        params.require(:task_template).permit(:value, :sort_id, :active)
+    end
 end
